@@ -2,7 +2,7 @@
   <section>
       <div class="container">
           <div class="list_album">
-              <div class="album" v-for="(album, index) in albums" :key="index">
+              <div class="album" v-for="(album, index) in filterSong" :key="index">
                   <cardAlbum :album="album"/>
               </div>
           </div>
@@ -13,6 +13,7 @@
 <script>
 import cardAlbum from '../common/cardAlbum.vue';
 import axios from 'axios';
+import select from '../../shared/select';
 
 export default {
   components: { cardAlbum },
@@ -20,6 +21,7 @@ export default {
     data() {
         return {
             albums: [],
+            select,
         }
     },
     created() {
@@ -27,13 +29,38 @@ export default {
         .then((response) => {
             // handle success
             this.albums = response.data.response;
-            console.log(this.albums)
+            
         })
         .catch(function (error) {
             // handle error
             console.log(error);
         })
-    }
+    },
+    computed: {
+        filterGenere() {
+            let albumsGenere = [];
+            this.albums.forEach((elm) => {
+                if(!albumsGenere.includes(elm.genre)) {
+                    albumsGenere.push(elm.genre);
+                }
+            });
+            select.listGenere = albumsGenere;
+            return albumsGenere;
+        },
+
+        filterSong() {
+            if(this.select.value === "") {
+                return this.albums
+            }
+
+            return this.albums.filter((elm) => 
+                elm.genre === this.select.value
+            )
+            }
+    },
+
+    
+
 }
 </script>
 

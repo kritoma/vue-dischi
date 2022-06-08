@@ -3,12 +3,19 @@
       <div class="logo">
           <img src="../../assets/img/spotify-logo.png" alt="logo-spotify">
       </div>
+      <div>
+          <SelectGenere/>
+      </div>
   </header>
 </template>
 
 <script>
+import SelectGenere from '../common/SelectGenere.vue';
+
 export default {
+  components: { SelectGenere },
     name: "baseHeader",
+
 }
 </script>
 
