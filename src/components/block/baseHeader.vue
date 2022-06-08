@@ -23,6 +23,9 @@ export default {
 header {
     background-color: #2e3a46;
     padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     img {
         height: 3.125rem;

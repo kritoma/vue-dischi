@@ -21,5 +21,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+select {
+    padding: 0 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    
+}
 </style>
